@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "65144810394",
+    "firebase_url": "https://idpchat.firebaseio.com",
+    "project_id": "idpchat",
+    "storage_bucket": "idpchat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65144810394:android:8bf88dabe7c6cbd5",
+        "android_client_info": {
+          "package_name": "ella.idpchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65144810394-dl0r4o65l1qnkiq5a38cc71gkk4hnpoa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ella.idpchat",
+            "certificate_hash": "48721989505b29c7c30701a00eaab420c0a6bbc5"
+          }
+        },
+        {
+          "client_id": "65144810394-qrhsuhvsqs32q6u60btd5fj1gefll3go.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUCpa4k0L5iW_NrTpZtPJw_9TdulSv_JU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65144810394-qrhsuhvsqs32q6u60btd5fj1gefll3go.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
