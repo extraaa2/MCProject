@@ -1,4 +1,4 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class GroupListAdapter extends ArrayAdapter {
+public class ChatsListAdapter extends ArrayAdapter {
 
     private Context context;
     private List<Chat> chats;
 
-    public GroupListAdapter(Context context, List items) {
+    public ChatsListAdapter(Context context, List items) {
         super(context, android.R.layout.simple_list_item_1, items);
         this.context = context;
         chats = items;
@@ -39,10 +39,10 @@ public class GroupListAdapter extends ArrayAdapter {
         final Chat item = (Chat)getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_group, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_chat, parent, false);
         }
 
-        TextView textView = (TextView) convertView.findViewById(R.id.nameTextView);
+        TextView textView = convertView.findViewById(R.id.nameTextView);
         textView.setText(item.getName());
         textView.setOnClickListener(new View.OnClickListener() {
             @Override

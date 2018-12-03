@@ -1,19 +1,14 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
-import com.google.firebase.FirebaseApp;
 
 public class PeopleListAdapter extends ArrayAdapter {
 
@@ -46,7 +41,7 @@ public class PeopleListAdapter extends ArrayAdapter {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_people, parent, false);
         }
 
-        TextView textView = (TextView) convertView.findViewById(R.id.nameTextView);
+        TextView textView = convertView.findViewById(R.id.nameTextView);
         textView.setText(item.getName());
         textView.setOnClickListener(new View.OnClickListener() {
             @Override

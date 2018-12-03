@@ -1,4 +1,4 @@
-package ella.idpchat;
+package ella.MCProject;
 
 public class ChatMessage {
     public User user;

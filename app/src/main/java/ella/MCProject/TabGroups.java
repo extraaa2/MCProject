@@ -1,6 +1,8 @@
-package ella.idpchat;
+package ella.MCProject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,17 +19,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class TabChats extends Fragment {
-    private static ArrayList<Chat> chats = new ArrayList<>();
-    ChatsListAdapter adapter;
+public class TabGroups extends Fragment {
+    private static ArrayList<Chat> groups = new ArrayList<>();
+    GroupListAdapter adapter;
     DatabaseReference databaseRef;
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView=inflater.inflate(R.layout.tab_chats, container, false);
+        View rootView=inflater.inflate(R.layout.tab_groups, container, false);
         super.onActivityCreated(savedInstanceState);
 
-        adapter = new ChatsListAdapter(getActivity().getApplicationContext(), chats);
-        ListView listView = (ListView) rootView.findViewById(R.id.tab_chat_view);
+        adapter = new GroupListAdapter(getActivity().getApplicationContext(), groups);
+        ListView listView = (ListView) rootView.findViewById(R.id.tab_group_view);
         listView.setAdapter(adapter);
 
         // set listener
@@ -41,21 +45,26 @@ public class TabChats extends Fragment {
                 // Get the chat message from the snapshot and add it to the UI
                 String chatUniqueId = snapshot.getKey();
                 if (chatUniqueId.indexOf(LoginActivity.getMainUser().getId()) != -1) {
-                    Chat chat = new Chat();
+                    Chat group = new Chat();
                     String []usernames = chatUniqueId.split(" ");
                     User mainUser = LoginActivity.getMainUser();
-                    chat.addUser(mainUser);
+                    group.addUser(mainUser);
                     for (String friendId : usernames) {
                         User friend = mainUser.findFriend(friendId);
                         if (friend == null) {
                             Log.v("FRIENDNOTFOUND", friendId);
+                            if (friendId.compareTo(mainUser.getId()) != 0) {
+                                friend = new User("unknown", friendId);
+                                Log.v("FRIEND", friend.getName());
+                                group.addUser(friend);
+                            }
                         } else {
                             Log.v("FRIEND", friend.getName());
-                            chat.addUser(friend);
+                            group.addUser(friend);
                         }
                     }
-                    if (chat.getParts().size() == 2 && !hasChat(chat)) {
-                        chats.add(chat);
+                    if (group.getParts().size() > 2 && !hasChat(group)) {
+                        groups.add(group);
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -67,19 +76,29 @@ public class TabChats extends Fragment {
             public void onCancelled(DatabaseError databaseError) { }
         });
 
+        FloatingActionButton addGroup = (FloatingActionButton) rootView.findViewById(R.id.add_group);
+        addGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v("GROUP", "add_group button clicked");
+                Intent intent = new Intent(getActivity(), GroupAdd.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
     }
 
     public void addChat(Chat chat) {
-        chats.add(chat);
-        Log.v("ADDCHAT ", "TabChats: " + chats.toString());
+        groups.add(chat);
+        Log.v("ADDGROUP ", "TabChats: " + groups.toString());
         adapter.notifyDataSetChanged();
     }
 
     public boolean hasChat(Chat chat) {
         ArrayList<User> list1 = chat.getParts();
 
-        for (Chat c: chats) {
+        for (Chat c: groups) {
             ArrayList<User> list2 = c.getParts();
             int count = 0;
 

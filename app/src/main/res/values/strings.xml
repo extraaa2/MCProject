@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">IDPChat</string>
+    <string name="app_name">Messenger</string>
     <string name="facebook_app_id">1887496148130747</string>
-    <string name="title_activity_main">IDPChat</string>
+    <string name="fb_login_protocol_scheme">fb1887496148130747</string>
+    <string name="title_activity_main"></string>
     <string name="action_settings">Settings</string>
     <string name="chat_window_activity">ChatWidow</string>
     <string name="group_window_activity">GroupWidow</string>

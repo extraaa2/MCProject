@@ -1,4 +1,4 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,11 +1,11 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class Chat {
-    ArrayList<User> parts;
+    ArrayList<User> parts; //people in chat
 
     Chat() {
         parts = new ArrayList<>();

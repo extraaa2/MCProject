@@ -1,8 +1,7 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;

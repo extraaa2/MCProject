@@ -1,13 +1,9 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-
 
 /**
  * This class helps to store class object in the shared preferences
@@ -21,8 +17,6 @@ public class ComplexPreferences {
 	private SharedPreferences preferences;
 	private SharedPreferences.Editor editor;
 	private static Gson GSON = new Gson();
-	Type typeOfObject = new TypeToken<Object>() {
-	}.getType();
 
 	private ComplexPreferences(Context context, String namePreferences, int mode) {
 		this.context = context;
@@ -36,10 +30,10 @@ public class ComplexPreferences {
 	public static ComplexPreferences getComplexPreferences(Context context,
                                                            String namePreferences, int mode) {
 
-//		if (complexPreferences == null) {
+		if (complexPreferences == null) {
 			complexPreferences = new ComplexPreferences(context,
 					namePreferences, mode);
-//		}
+		}
 
 		return complexPreferences;
 	}

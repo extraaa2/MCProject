@@ -1,37 +1,41 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.google.firebase.FirebaseApp;
 
-public class ChatsListAdapter extends ArrayAdapter {
+public class AddGroupAdapter extends ArrayAdapter {
 
     private Context context;
-    private List<Chat> chats;
+    private List<User> friends;
+    private List<User> groupUsers;
 
-    public ChatsListAdapter(Context context, List items) {
+    public AddGroupAdapter(Context context, List items) {
         super(context, android.R.layout.simple_list_item_1, items);
         this.context = context;
-        chats = items;
+        friends = items;
+        groupUsers = new ArrayList<User>();
+        groupUsers.add(LoginActivity.getMainUser());
+    }
+
+   public List<User> getFriends() {
+        return groupUsers;
     }
 
     @Override
     public int getCount() {
-        return chats.size();
+        return friends.size();
     }
     @Override
     public Object getItem(int pos) {
-        return chats.get(pos);
+        return friends.get(pos);
     }
     @Override
     public long getItemId(int position) {
@@ -39,22 +43,20 @@ public class ChatsListAdapter extends ArrayAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Chat item = (Chat)getItem(position);
+        final User item = (User)getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_chat, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_group, parent, false);
         }
 
-        TextView textView = (TextView) convertView.findViewById(R.id.nameTextView);
+        final TextView textView = (TextView) convertView.findViewById(R.id.nameTextView);
         textView.setText(item.getName());
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ChatWindow.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                Log.v("CHATUNIQUEID", item.getUniqueId());
-                intent.putExtra("chatUniqueId", item.getUniqueId());
-                context.startActivity(intent);
+                Log.v("GROUP", "add friend to group " + item.getName());
+                groupUsers.add(item);
+                textView.setBackgroundColor(222);
             }
         });
         return convertView;

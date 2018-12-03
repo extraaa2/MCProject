@@ -1,4 +1,4 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import java.util.ArrayList;
 

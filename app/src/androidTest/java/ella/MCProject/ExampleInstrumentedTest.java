@@ -1,4 +1,4 @@
-package ella.idpchat;
+package ella.MCProject;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

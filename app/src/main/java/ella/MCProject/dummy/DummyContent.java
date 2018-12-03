@@ -1,4 +1,4 @@
-package ella.idpchat.dummy;
+package ella.MCProject.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
