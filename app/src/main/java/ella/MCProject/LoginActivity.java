@@ -1,13 +1,10 @@
 package ella.MCProject;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -34,14 +31,9 @@ import org.json.JSONObject;
 public class LoginActivity extends Activity {
     private CallbackManager callbackManager;
     private LoginButton loginButton;
-    private static User mainUser;
     private FirebaseAuth mAuth;
 
     private static final String TAG = "FacebookLogin";
-
-    public static User getMainUser() {
-        return mainUser;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +87,7 @@ public class LoginActivity extends Activity {
                                 try {
                                     String name = object.getString("name");
                                     String id = object.getString("id");
-                                    mainUser = new User(name, id);
+                                    User mainUser = new User(name, id);
                                     JSONObject friends = object.getJSONObject("friends");
                                     Log.v("FRIENDS ", friends.toString());
                                     JSONArray friendslist = friends.getJSONArray("data");
@@ -104,6 +96,7 @@ public class LoginActivity extends Activity {
                                         mainUser.addFriend(new User(friendslist.getJSONObject(l).getString("name"),
                                                 friendslist.getJSONObject(l).getString("id")));
                                     }
+                                    PrefUtils.setCurrentUser(mainUser, getApplicationContext());
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

@@ -31,7 +31,7 @@ public class TabGroups extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         adapter = new GroupListAdapter(getActivity().getApplicationContext(), groups);
-        ListView listView = (ListView) rootView.findViewById(R.id.tab_group_view);
+        ListView listView = rootView.findViewById(R.id.tab_group_view);
         listView.setAdapter(adapter);
 
         // set listener
@@ -44,10 +44,10 @@ public class TabGroups extends Fragment {
             public void onChildAdded(DataSnapshot snapshot, String s) {
                 // Get the chat message from the snapshot and add it to the UI
                 String chatUniqueId = snapshot.getKey();
-                if (chatUniqueId.indexOf(LoginActivity.getMainUser().getId()) != -1) {
+                User mainUser = PrefUtils.getCurrentUser(getActivity().getApplicationContext());
+                if (mainUser != null &&  chatUniqueId.indexOf(mainUser.getId()) != -1) {
                     Chat group = new Chat();
                     String []usernames = chatUniqueId.split(" ");
-                    User mainUser = LoginActivity.getMainUser();
                     group.addUser(mainUser);
                     for (String friendId : usernames) {
                         User friend = mainUser.findFriend(friendId);

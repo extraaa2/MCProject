@@ -16,11 +16,11 @@ public class TabPeople extends Fragment {
         View rootView=inflater.inflate(R.layout.tab_people, container, false);
         super.onActivityCreated(savedInstanceState);
 
-        ArrayList<User> friends = LoginActivity.getMainUser().getFriends();
+        ArrayList<User> friends = PrefUtils.getCurrentUser(getActivity().getApplicationContext()).getFriends();
         Log.v("FRIENDS ", friends.toString());
 
         PeopleListAdapter adapter = new PeopleListAdapter(getActivity().getApplicationContext(), friends);
-        ListView listView = (ListView) rootView.findViewById(R.id.tab_people_view);
+        ListView listView = rootView.findViewById(R.id.tab_people_view);
         listView.setAdapter(adapter);
         return rootView;
     }

@@ -21,15 +21,13 @@ import java.net.URL;
 public class LogoutActivity extends Activity {
 
     private TextView btnLogout;
-    private User user;
     private ImageView profileImage;
     Bitmap bitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
-        user=PrefUtils.getCurrentUser(LogoutActivity.this);
-        profileImage= (ImageView) findViewById(R.id.profileImage);
+        profileImage= findViewById(R.id.profileImage);
 
         // fetching facebook's profile picture
         new AsyncTask<Void,Void,Void>(){
@@ -58,11 +56,11 @@ public class LogoutActivity extends Activity {
         }.execute();
 
 
-        btnLogout = (TextView) findViewById(R.id.btnLogout);
+        btnLogout = findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PrefUtils.clearCurrentUser(LogoutActivity.this);
+                PrefUtils.clearCurrentUser(getApplicationContext());
                 // We can logout from facebook by calling following method
                 LoginManager.getInstance().logOut();
                 FirebaseAuth.getInstance().signOut();

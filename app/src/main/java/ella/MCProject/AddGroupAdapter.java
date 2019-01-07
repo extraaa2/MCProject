@@ -17,12 +17,12 @@ public class AddGroupAdapter extends ArrayAdapter {
     private List<User> friends;
     private List<User> groupUsers;
 
-    public AddGroupAdapter(Context context, List items) {
-        super(context, android.R.layout.simple_list_item_1, items);
-        this.context = context;
+    public AddGroupAdapter(Context outerContext, List items) {
+        super(outerContext, android.R.layout.simple_list_item_1, items);
+        context = outerContext;
         friends = items;
-        groupUsers = new ArrayList<User>();
-        groupUsers.add(LoginActivity.getMainUser());
+        groupUsers = new ArrayList<>();
+        groupUsers.add(PrefUtils.getCurrentUser(context));
     }
 
    public List<User> getFriends() {

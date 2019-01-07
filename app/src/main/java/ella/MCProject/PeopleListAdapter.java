@@ -15,9 +15,9 @@ public class PeopleListAdapter extends ArrayAdapter {
     private Context context;
     private List<User> friends;
 
-    public PeopleListAdapter(Context context, List items) {
-        super(context, android.R.layout.simple_list_item_1, items);
-        this.context = context;
+    public PeopleListAdapter(Context outsideContext, List items) {
+        super(outsideContext, android.R.layout.simple_list_item_1, items);
+        context = outsideContext;
         friends = items;
     }
 
@@ -48,8 +48,8 @@ public class PeopleListAdapter extends ArrayAdapter {
             public void onClick(View v) {
 
                 Chat chat = new Chat();
-                chat.addUser(LoginActivity.getMainUser());
-                User user = LoginActivity.getMainUser().findFriend(item.getId());
+                chat.addUser(PrefUtils.getCurrentUser(context));
+                User user = PrefUtils.getCurrentUser(context).findFriend(item.getId());
                 if (user != null)
                     chat.addUser(user);
                 else {

@@ -23,10 +23,10 @@ public class GroupAdd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_add_window);
 
-        addBtn = (Button) findViewById(R.id.addBtn);
-        peopleList = (ListView) findViewById(R.id.group_people_view);
+        addBtn = findViewById(R.id.addBtn);
+        peopleList = findViewById(R.id.group_people_view);
 
-        adapter = new AddGroupAdapter(this, LoginActivity.getMainUser().getFriends());
+        adapter = new AddGroupAdapter(getApplicationContext(), PrefUtils.getCurrentUser(getApplicationContext()).getFriends());
         peopleList.setAdapter(adapter);
 
         addBtn.setOnClickListener(new View.OnClickListener() {
