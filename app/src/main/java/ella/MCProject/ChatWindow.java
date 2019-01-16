@@ -104,7 +104,7 @@ public class ChatWindow extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("CHATWINDOW", "wrote " + messageTxt.getText().toString());
-                ChatMessage chatMessage = new ChatMessage(LoginActivity.getMainUser(), messageTxt.getText().toString());
+                ChatMessage chatMessage = new ChatMessage(PrefUtils.getCurrentUser(getApplicationContext()), messageTxt.getText().toString());
                 // Push the chat message to the database
                 usersRef.push().setValue(chatMessage);
                 messageTxt.setText("");

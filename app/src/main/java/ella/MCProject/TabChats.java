@@ -40,10 +40,10 @@ public class TabChats extends Fragment {
             public void onChildAdded(DataSnapshot snapshot, String s) {
                 // Get the chat message from the snapshot and add it to the UI
                 String chatUniqueId = snapshot.getKey();
-                if (chatUniqueId.indexOf(LoginActivity.getMainUser().getId()) != -1) {
+                User mainUser = PrefUtils.getCurrentUser(getActivity().getApplicationContext());
+                if (chatUniqueId.indexOf(mainUser.getId()) != -1) {
                     Chat chat = new Chat();
                     String []usernames = chatUniqueId.split(" ");
-                    User mainUser = LoginActivity.getMainUser();
                     chat.addUser(mainUser);
                     for (String friendId : usernames) {
                         User friend = mainUser.findFriend(friendId);
